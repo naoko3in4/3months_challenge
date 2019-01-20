@@ -1,0 +1,43 @@
+.choice {
+  border: 1px solid black;
+  width: 100px;
+  text-align: center;
+}
+
+.chosen { 
+  text-decoration: none;
+}
+
+.chosen:hover { 
+  background-color: #fafad2;
+} 
+
+#myPon, #myD {
+  background-color: #fafad2;
+}
+
+#pon, #hoi {
+  background-color: #e0ffff;
+}
+
+#judge {
+  background-color: #f08080;
+  color: white;
+  font-weight: bold;
+}
+
+#final{
+  background-color: #dc143c;
+  color: white;
+  font-weight: bold;
+}
+
+.result {
+  width: 200px;
+  height: 60px;
+  border: 2px solid black;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  line-height: 60px;
+  text-align: center;
+}

@@ -1,0 +1,28 @@
+.container {
+  margin: 0 auto;
+}
+
+.fruit {
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  margin: 0 auto;
+  border: 2px solid black;
+  float: left;
+}
+
+#apple {
+  background-color: #dc143c;
+  float: left;
+}
+
+#banana {
+  background-color: #ffd700;
+  float: left;
+}
+
+#orange {
+  background-color: #ff8c00;
+  float: left;
+}
