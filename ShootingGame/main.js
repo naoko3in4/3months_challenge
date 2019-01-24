@@ -9,11 +9,16 @@ let counter = 0; // シーン管理（ゲーム全体の進行具合を把握）
 const CHARA_COLOR = 'rgba(84, 77, 203, 0.75)'; // 自機の色
 const CHARA_SHOT_COLOR = 'rgba(50, 204, 18, 1)';// ショットの色
 const CHARA_SHOT_MAX_COUNT = 10; // 画面上で出せるショットの上限数
-const ENEMY_COLOR = 'rgba(255, 98, 50, 0.75)'; //敵の色
+const ENEMY_COLOR = 'rgba(255, 0, 119, 0.75)'; //敵の色
 const ENEMY_MAX_COUNT = 10; // 敵の上限数
+const ENEMY_SHOT_COLOR = 'rgba(229, 72, 0, 1)'; //敵ショットの色
+const ENEMY_SHOT_MAX_COUNT = 100; // 敵ショットの上限数
 
 // メイン 初期化-----------------------------------------------------------------------------------------
 window.onload = () => {
+  // 変数の定義
+  let i, j;
+  let p = new Point();
 
   // スクリーン初期化
   screenCanvas = document.getElementById("screen");
@@ -37,7 +42,7 @@ window.onload = () => {
   let chara = new Character();
   chara.init(10);
 
-  // ショットの初期化
+  // ショットのインスタンス初期化
   let charaShot = new Array(CHARA_SHOT_MAX_COUNT);
   for (i = 0; i < CHARA_SHOT_MAX_COUNT; i++){
     charaShot[i] = new CharacterShot();
@@ -49,15 +54,25 @@ window.onload = () => {
     enemy[i] = new Enemy();
   }
 
+  // 敵ショットのインスタンス初期化
+  let enemyShot = new Array(ENEMY_SHOT_MAX_COUNT);
+  for (i = 0; i < ENEMY_SHOT_MAX_COUNT; i++){
+    enemyShot[i] = new EnemyShot();
+  }
+
   // ループ  setTimeoutを用いて無名関数自体を再帰的に呼び出し-----------------------------------------------------------
   // run が真の時 fps 秒後に無名関数を実行  
   (function(){
+    // カウンターが増える
+    counter++;
+
     // HTMLの更新
     info.innerHTML = mouse.x + " : " + mouse.y;
-    // -----自機の作成-----
+
     // スクリーンのクリア clearRect(x, y, w, h)メソッド (canvas 上の指定された矩形のすべてのピクセルを、透明な黒にクリア)
     ctx.clearRect(0, 0, screenCanvas.width, screenCanvas.height);
 
+    // -----自機の作成-----
     // パスの初期化 beginPath()メソッド（現在のパスをクリア）
     ctx.beginPath();
 
@@ -76,7 +91,23 @@ window.onload = () => {
     // 自機（円）を描く
     ctx.fill();
 
-    // ----ショットの描画----
+    // ----ショットの生成----
+    if (fire) {
+      // 全ての自機ショットを調査する
+      for (i = 0; i < CHARA_SHOT_MAX_COUNT; i++) {
+        // 自機ショットが既に発射されているかチェック
+        if (!charaShot[i].alive) {
+          // 自機ショットを新規にセット
+          charaShot[i].set(chara.position, 4, 6); // ショットを生成する初期位置は、自機のいる座標。サイズは 3 で速度は 5
+          // ループを抜ける
+          break;
+        }
+      }
+      // フラグを降ろしておく
+      fire = false;
+    }
+
+     // ----ショットの描画----
     // パスの初期化
     ctx.beginPath();
 
@@ -106,42 +137,112 @@ window.onload = () => {
 
     // 自機ショットを描く
     ctx.fill();
-   
-    // ----ショットの生成----
-    if (fire) {
-      // 全ての自機ショットを調査する
-      for (i = 0; i < CHARA_SHOT_MAX_COUNT; i++) {
-        // 自機ショットが既に発射されているかチェック
-        if (!charaShot[i].alive) {
-          // 自機ショットを新規にセット
-          charaShot[i].set(chara.position, 4, 6); // ショットを生成する初期位置は、自機のいる座標。サイズは 3 で速度は 5
-          // ループを抜ける
-          break;
-        }
-      }
-      // フラグを降ろしておく
-      fire = false;
-    }
 
     // ----敵の出現管理----
     // 100フレームに一度出現
-    // if (counter % 100 === 0){
-    //   // 全ての敵の調査
-    //   for(i = 0; i < ENEMY_MAX_COUNT; i++ ){
-    //     // 敵の生存フラグの確認
-    //     if (!enemy[i].alive){
+    if (counter % 100 === 0){
+    // 全ての敵の調査
+      for(i = 0; i < ENEMY_MAX_COUNT; i++ ){
+    // 敵の生存フラグの確認
+        if (!enemy[i].alive){
+    // タイプ決定のパラメータ算出
+    // 2種類のタイプをさらに交互に出す 結果が0か１になる
+          j = (counter % 200) / 100;
+    // タイプに応じ初期位置を決める  *******要確認*******
+          let enemySize = 13;
+          p.x = -enemySize + (screenCanvas.width + enemySize * 2) * j;
+          p.y = screenCanvas.height / 2;
 
-    //     }
-    // }
+    // 敵を新規にセット
+          enemy[i].set(p, enemySize, j);
 
+    // 1体出現したらループから出る
+          break;
+        }
+      }
+    }
 
+    // ----敵----
+    // 敵 パスの初期化
+    ctx.beginPath();
+
+    // 全ての敵を調査
+    for (i = 0; i < ENEMY_MAX_COUNT; i++){
+      // 敵の生存フラグチェック
+      if (enemy[i].alive) {
+
+        // 敵を動かす
+        enemy[i].move();
+
+        // 敵を描くパスの設定
+        ctx.arc(
+          enemy[i].position.x,
+          enemy[i].position.y,
+          enemy[i].size,
+          0, Math.PI * 2, false
+        );
+       
+        // 敵がショットを打つかパラメータの値から確認
+        if (enemy[i].param % 30 === 0){
+          // 敵ショットを調べる
+          for (j = 0; j < ENEMY_SHOT_MAX_COUNT; j++){
+            if (!enemyShot[j].alive){
+              // 敵ショットを新規にセット
+              p = enemy[i].position.distance(chara.position);
+              p.normalize();
+              enemyShot[j].set(enemy[i].position, p, 5, 5); // サイズ・スピード
+
+              // １つ出現させたらループ抜ける
+              break;
+            }
+          }
+        }
+
+        // 敵 パスを一旦閉じる
+        ctx.closePath();
+      }
+    }
+    // 敵の色を設定
+    ctx.fillStyle = ENEMY_COLOR;
+
+    // 敵を描く
+    ctx.fill();
+
+    //----敵ショット----
+    // 敵ショット パスの初期化
+    ctx.beginPath();
+
+    // 全ての敵ショットを調査
+    for (i = 0; i < ENEMY_SHOT_MAX_COUNT; i++){
+      // 敵ショットが既に発射されているかチェック
+      if (enemyShot[i].alive) {
+
+        // 敵ショットを動かす
+        enemyShot[i].move();
+
+        // 敵ショットを描くパスの設定
+        ctx.arc(
+          enemyShot[i].position.x,
+          enemyShot[i].position.y,
+          enemyShot[i].size,
+          0, Math.PI * 2, false
+        );
+        // 敵ショット パスを一旦閉じる
+        ctx.closePath();
+      }
+    }
+    // 敵ショットの色を設定
+    ctx.fillStyle = ENEMY_SHOT_COLOR;
+
+    // 敵ショットを描く
+    ctx.fill();
 
     // setTimeoutで再帰呼出し
     if (run) {
       setTimeout(arguments.callee,fps);
     }
   })();
-
+};
   //イベント-----------------------------------------------------------------------
   function mouseMove(event) {
   //  let mouseMove = (event) => {
@@ -150,20 +251,21 @@ window.onload = () => {
     mouse.y = event.clientY - screenCanvas.offsetTop;
   }
 
-  function keyDown(event){
-  // keyDown = (event) => {
-    // キーコードをevent.keyCodeプロパティで取得
-    let ck = event.keyCode;
-
-    // escキーだったらフラグを下ろす
-    if (ck === 27){
-      run = false;
-    }
-  }
-
   function mouseDown(event){
     // フラグを立てる  マウスクリックを検知する関数
     fire = true;
   }
 
-}
+  function keyDown(event){
+  // keyDown = (event) => {
+    // キーコードをevent.keyCodeプロパティで取得
+    let ck = event.keyCode;
+    // escキーだったらフラグを下ろす
+    if (ck === 27){
+      run = false;
+    }
+  }
+    
+
+  
+
