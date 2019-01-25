@@ -181,7 +181,7 @@ window.onload = () => {
           enemy[i].size,
           0, Math.PI * 2, false
         );
-       
+      
         // 敵がショットを打つかパラメータの値から確認
         if (enemy[i].param % 30 === 0){
           // 敵ショットを調べる
@@ -237,6 +237,29 @@ window.onload = () => {
     // 敵ショットを描く
     ctx.fill();
 
+    // ----衝突判定----
+    // 全て自機ショットを調べる
+    for (i = 0; i < CHARA_SHOT_MAX_COUNT; i++){
+      // 自機ショットの生存フラグを確認
+      if (charaShot[i].alive){
+        // 自機ショットと敵の衝突判定する
+        for (j = 0; j < ENEMY_MAX_COUNT; j++){
+          // 敵の生存フラグを確認
+          if (enemy[j].alive){
+            // 敵と自機ショットの距離を確認
+            p = enemy[j].position.distance(charaShot[i].position);
+            if (p.length() < enemy[j].size){
+              // 衝突してたらフラグ下げる
+              enemy[j].alive = false;
+              charaShot[i].alive = false;
+              // 衝突発生したらループから出る
+              break;
+            }
+          }
+        }
+      }
+    }
+
     // setTimeoutで再帰呼出し
     if (run) {
       setTimeout(arguments.callee,fps);
@@ -267,5 +290,7 @@ window.onload = () => {
   }
     
 
-  
+
+
+
 

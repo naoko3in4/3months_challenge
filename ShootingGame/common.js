@@ -1,20 +1,15 @@
-// Point = e => {
-//   e.x = 0;
-//   e.y = 0;
-// }
-
 function Point(){
   this.x = 0;
   this.y = 0;
 }
 
-// Pointクラス拡張の為↓
-// 敵キャラから自機へショットを飛ばす時の距離で必要
+// // Pointクラス拡張の為↓
+// // 敵キャラから自機へショットを飛ばす時の距離で必要
 Point.prototype.distance = function(p){
   let q = new Point();
   q.x = p.x - this.x;
   q.y = p.y - this.y;
-  return;
+  return q;
 };
 // x,yの比率は平方根で計算する
 Point.prototype.length = function(){
@@ -30,3 +25,7 @@ Point.prototype.normalize = function(){
     this.y *= j;
   }
 };
+
+
+
+
