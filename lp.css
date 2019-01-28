@@ -78,7 +78,7 @@ footer {
   margin: 0 auto;
   height: 100px;
   /* height: 10%; */
-  background-image:  url(../lp_main.jpg);
+  background-image:  url(lp_main.jpg);
   background-size: cover; 
   background-position:  10% 100%;
 }
