@@ -40,6 +40,10 @@ nav a {
   color: white;
 }
 
+#about nav a {
+  color: black;
+}
+
 h1 {
   margin: 0 auto;
   padding: 10px;
@@ -68,6 +72,32 @@ table tr td {
   display: block;
   color:#696969;
   text-decoration: underline;
+}
+
+#me {
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-bottom: 100px;
+  margin-bottom: 200px;
+}
+
+#MyPic {
+  margin: 0 auto;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-image: url(8.jpg);
+  background-size: cover; 
+  background-position: 70% 30%; 
+  box-shadow: 0 0 10px 5px white;
+}
+
+h2 {
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  width: 60%;
+  border: 0px;
 }
 
 footer {
