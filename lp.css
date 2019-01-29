@@ -40,10 +40,6 @@ nav a {
   color: white;
 }
 
-#aboutNav a {
-  color: black;
-}
-
 h1 {
   margin: 0 auto;
   padding: 10px;
@@ -53,10 +49,12 @@ h1 {
 }
 
 #apps {
-  padding-top: 5px;
+  /* padding-top: 5px; */
   color:#696969;
-  /* height: 60%; */
-  height: 400px;
+  /* height: 400px; */
+  padding: 4rem 8rem;
+  max-width: 28rem;
+  margin: 0 auto;
 }
 
 #games {
@@ -78,6 +76,7 @@ table tr td {
   max-width: 35rem;
   text-align: center;
   margin: 0 auto;
+  margin-top: 30px;
   margin-bottom: 200px; 
   /* padding-right: 100px;
   padding-left: 100px;
@@ -111,7 +110,6 @@ footer {
   letter-spacing: 1px;
   margin: 0 auto;
   height: 100px;
-  /* height: 10%; */
   background-image:  url(lp_main.jpg);
   background-size: cover; 
   background-position:  10% 100%;
