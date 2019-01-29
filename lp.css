@@ -51,10 +51,12 @@ h1 {
 #apps {
   /* padding-top: 5px; */
   color:#696969;
-  height: 400px;
+  /* height: 400px; */
   padding: 4rem 8rem;
   max-width: 28rem;
   margin: 0 auto;
+  margin-bottom: 200px; 
+
 }
 
 #games {
