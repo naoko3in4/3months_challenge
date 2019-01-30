@@ -6,6 +6,8 @@ let mouse = new Point(); // common.jsで作ったPointクラスで、マウス�
 let ctx; //canvas2nd コンテキスト格納用
 let fire = false; //shotを発射するかしないか
 let counter = 0; // シーン管理（ゲーム全体の進行具合を把握）
+let message = "";
+let score = 0;
 const CHARA_COLOR = 'rgba(84, 77, 203, 0.75)'; // 自機の色
 const CHARA_SHOT_COLOR = 'rgba(50, 204, 18, 1)';// ショットの色
 const CHARA_SHOT_MAX_COUNT = 10; // 画面上で出せるショットの上限数
@@ -65,9 +67,6 @@ window.onload = () => {
   (function(){
     // カウンターが増える
     counter++;
-
-    // HTMLの更新
-    info.innerHTML = mouse.x + " : " + mouse.y;
 
     // スクリーンのクリア clearRect(x, y, w, h)メソッド (canvas 上の指定された矩形のすべてのピクセルを、透明な黒にクリア)
     ctx.clearRect(0, 0, screenCanvas.width, screenCanvas.height);
@@ -137,6 +136,23 @@ window.onload = () => {
 
     // 自機ショットを描く
     ctx.fill();
+
+    // カウンターの値でシーンを分ける
+    switch (true) { // switch条件をtrueにすると柔軟な処理が書ける
+      // カウンターが70より小さいとき
+      case counter < 70:
+        message = "READY..";
+        break;
+
+      // カウンターが100より小さいとき
+      case counter < 100:
+        message = "GO!";
+        break;
+
+      // カウンターが100以上のとき→処理が続く
+      default:
+        message = "";
+    }
 
     // ----敵の出現管理----
     // 100フレームに一度出現
@@ -238,6 +254,7 @@ window.onload = () => {
     ctx.fill();
 
     // ----衝突判定----
+    // 自機ショット vs 敵
     // 全て自機ショットを調べる
     for (i = 0; i < CHARA_SHOT_MAX_COUNT; i++){
       // 自機ショットの生存フラグを確認
@@ -252,6 +269,8 @@ window.onload = () => {
               // 衝突してたらフラグ下げる
               enemy[j].alive = false;
               charaShot[i].alive = false;
+              // スコアを更新（増やす）
+              score++;
               // 衝突発生したらループから出る
               break;
             }
@@ -259,6 +278,26 @@ window.onload = () => {
         }
       }
     }
+    // 自機 vs 敵ショット
+    // 全て敵ショットを調べる
+    for (i = 0; i < ENEMY_SHOT_MAX_COUNT; i++){
+      // 敵ショットの生存フラグを確認
+      if (enemyShot[i].alive){
+        // 自機と敵ショットの距離を確認
+        p = chara.position.distance(enemyShot[i].position);
+        if (p.length() < chara.size){
+          // 衝突してたらフラグ下げる
+          chara.alive = false;
+          // 衝突したらパラメータ変更→ループ抜ける
+          run = false;
+          message = "GAME OVER";
+          break;
+        }
+      }
+    }
+    // HTMLの更新
+    // info.innerHTML = mouse.x + " : " + mouse.y;
+    info.innerHTML = "SCORE: " + (score*100) + " " + message;
 
     // setTimeoutで再帰呼出し
     if (run) {
