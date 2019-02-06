@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+body {
+  margin: 0 auto;
+  padding: 0 auto;
+  display: flex;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#arroundStr {
+  width: 100%;
+}
+
+#gameStart {
+  margin: 0 auto;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid black;
+  background-color: orange;
+  font-weight: bold;
+}
+
+.disappearStart {
+  display: none;
+}
+
+.card {
+  margin-top:30px;
+  width: 70px;
+  height: 100px;
+  background-color: green;
+  margin-right: 10px;
+}
+
+.clickedCard {
+  background-color: blue;
+  width: 70px;
+  height: 100px;
+  /* background-image: url('img/card_club_01.png'); */
+  background-size: cover;
+
+  
+}
