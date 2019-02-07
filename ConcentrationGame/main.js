@@ -1,5 +1,5 @@
 // "use strict";
-
+// トランプマークの種類と
 const marks = ['club','diamond','heart','spade'];
 
 let n = Math.floor(Math.random()*marks.length +1);

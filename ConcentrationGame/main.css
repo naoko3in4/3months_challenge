@@ -36,7 +36,6 @@ body {
   margin-top:30px;
   width: 70px;
   height: 100px;
-  /* background-color: green; */
   background-image:url('img/card_back.png');
   background-size: cover;
   margin-right: 10px;
@@ -45,7 +44,6 @@ body {
 }
 
 .clickedCard {
-  /* background-color: blue; */
   margin-top:30px;
   width: 70px;
   height: 100px;
