@@ -1,0 +1,66 @@
+body {
+  font-size: 16px;
+  font-family: Verdana, sans-serif;
+  background-color: #db7093;
+  background-image: url("img/shopping_cart.png");
+  background-size: cover;
+}
+
+.container {
+  width: 300px;
+  margin: auto;
+}
+
+#app h1 {
+  font-size: 16px;
+  /* border-bottom: 1px solid #ddd; */
+  padding: 16px 0;
+}
+
+#app h1 button {
+  padding-left: 5px;
+  border-radius: 7%;
+  background-color: #70db82;
+}
+
+#app li {
+  line-height: 1.5;
+}
+
+#app input[type="text"] {
+  padding: 3px;
+  border-radius: 7%;
+}
+
+#app input[type="submit"] {
+  /* background-color: #70c9db; */
+  background: #70c9db;
+  border-radius: 7%;
+
+}
+
+.command {
+  font-size: 15px;
+  cursor: pointer;
+  color: white	;
+  /* font-weight: bold; */
+}
+
+#app ul {
+  padding: 0;
+  list-style: none;
+}
+
+#app li > span.done {
+  text-decoration: line-through;
+  color: #666460;
+}
+
+.info {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+#app h1 > button {
+  float: right;
+}
