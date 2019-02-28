@@ -7,8 +7,8 @@ const marks = ['club','diamond','heart','spade'];
 
 // プレイ中に使用する変数
 let flipCount = 0;
-let firstCard;
-let secondCard;
+let firstCard = {};
+let secondCard = {};
 
 const field = document.getElementById("field");
 
@@ -20,15 +20,8 @@ gameStart.addEventListener('click', () => {
   createCards();
 });
 
-function resetFlippedCards() {
-  firstCard = {};
-  secondCard = {};
-  console.log("リセット");
-}
-
-// 引数は必要なし
+// カード生成
 function createCards() {
-  resetFlippedCards();
 
   for (let j = 0; j < 4; j++) {
     const mark = marks[j];
@@ -38,6 +31,7 @@ function createCards() {
       card.num = i;
       card.mark = mark;
       card.open = false;
+      card.image = ('img/card_back.png');
       cards.push(card);
     };
   }
@@ -49,12 +43,12 @@ function createCards() {
 function shuffleCards() {
   for(let i = cards.length - 1; i > 0; i--){
     const r = Math.floor(Math.random() * (i + 1));
-    const tmp = cards[i];
+    const card = cards[i];
     cards[i] = cards[r];
-    cards[r] = tmp;
+    cards[r] = card;
   }
-  // シャッフルしたカードデータをDOMに書き出すため drawCards関数 に渡す
-  drawCards();
+  // シャッフルしたカードデータをDOMに書き出すため initDraw関数 に渡す
+  initDraw();
 }
 
 // 一桁のとき頭に0付ける（画像の名前に合わせるため）
@@ -63,14 +57,34 @@ function zeroPadding(num, length) {
 }
 
 // カードデータをもとにDOM操作でカードを表示させる（初期化）
-function drawCards() {
+function initDraw() {
   for (let i = 0; i < cards.length; i++) {
-    const card = document.createElement('div');
-    // カードのクラスcardは裏画面うさぎ
-    card.classList.toggle('card');
-    card.id = i;
-    field.appendChild(card);
+    const card = cards[i];
+
+    // 最後にDOMに渡すdivのデータの箱を準備
+    // ここに cards[i]に入っているデータを渡していく
+    // DOM上（これから描画するカード）がcardDOM
+    const cardDom = document.createElement('div');
+    // divのidを定義
+    cardDom.id = i + 1;
+
+    // cards[i].image のpathの画像を DOMに渡す
+    cardDom.style.backgroundImage= `url(${card.image})`;
+    cardDom.classList.add("card");
+    field.appendChild(cardDom);
   }
+}
+
+function drawCards(cardIndex) {
+  // console.log('cardIndex',cardIndex);
+
+  const cardId = cardIndex + 1;
+  const cardDom = document.getElementById(cardId);
+  // cards[cardIndex].image のpathの画像を DOMに渡す
+  console.log(cards[cardIndex]);
+  cardDom.style.backgroundImage = `url(${cards[cardIndex].image})`;
+  console.log(cardDom);
+  // resetFlippedCards();
 }
 
 // DOMでクリックした場所の情報を取得してflipcardに渡す
@@ -80,20 +94,21 @@ field.addEventListener('click', (e)=> {
 });
 
 // クリックされたカードを開けて、DOMに描く
-function flipCard(cardIndex) {
+function flipCard(cardId) {
+  const cardIndex = cardId - 1;
   const card = cards[cardIndex];
 
   // 配列cards内でindex番号"cardNum番目"のopen情報をtrueに変更
   card.open = true;
 
-  // HTML内でidが"cardIndex"のものを取得
-  const cardDom = document.getElementById(cardIndex);
-
   // 画像名に合わせるために番号を取得
   const formattedNum = zeroPadding(card.num, 2);
   
   // 先程取得した"card"のstyleを変更する
-  cardDom.style.backgroundImage= `url('img/card_${card.mark}_${formattedNum}.png')`;
+  card.image = `img/card_${card.mark}_${formattedNum}.png`;
+
+  // console.log('card.image', card.image);
+  drawCards(cardIndex);
 
   checkFlipLimit(cardIndex);
 }
@@ -104,37 +119,71 @@ function flipCard(cardIndex) {
 // firstCard, secondCardを初期化。
 function checkFlipLimit(cardIndex) {
   const card = cards[cardIndex];
-
   // めくった回数をカウント(0 〜 2まで。2になったら0に戻す)
   flipCount++;
+  console.log(flipCount);
   // めくった回数によって1枚目、2枚目のカード番号を保持
   if (flipCount === 1) {
     firstCard.num = card.num;
+    console.log(firstCard);
     firstCard.index = cardIndex;
+    console.log("firstだよ");
   }
 
   if (flipCount === 2) {
     secondCard.num = card.num;
     secondCard.index = cardIndex;
+    console.log("secondだよ");
 
     // 1枚目と2枚目が同じ番号の場合、fistCard, secondCardを初期化するのみ。
     // カードは見えたまま
     if (firstCard.num === secondCard.num) {
-      resetFlippedCards();
+      // resetFlippedCards();
+      console.log("正解！");
+      
+      // return;
     }
+
     // 違う番号の場合、１秒後に裏に戻す。
     // その間、他のカードはクリックできない。
+
     if (firstCard.num !== secondCard.num) {
-
-      // const cardDom = 
-      resetFlippedCards();
+      console.log("wrong numbers");
+      resetFlippedCards(cardIndex);
+      // return;
     }
-
     flipCount = 0;
   }
-
 }
 
-// トランプをクリックするたびマーク・数字が変わるように
-// 同じマークかつ数字が出ないように
-// 同じ数字が揃ったら消えるorカウントする
+function resetFlippedCards(cardIndex) {
+  console.log(firstCard);
+  console.log(cards[firstCard.index]);  
+  console.log(cards[firstCard.index].image);
+  cards[firstCard.index].image = ('img/card_back.png');
+  console.log(cards);
+
+  // firstCard の cards[インデックス番号]
+  // firstCard.index = cardIndex;
+  // fcardIndex;
+  // firstCardのimageがうさぎになる
+  // firstCard.image = ('img/card_back.png');
+  // console.log(firstCard.image);
+
+  // secondCard の cards[インデックス番号]
+  // secondCard.index = cardIndex;
+  // secondCardのimageがうさぎになる
+  // secondCard.image = ('img/card_back.png');
+
+  // firstCard, secondCard空にする
+  firstCard = {};
+  secondCard = {};
+  // console.log(firstCard);
+  // console.log(secondCard);
+  drawCards(cardIndex);
+  console.log("リセット");
+}
+
+
+
+
