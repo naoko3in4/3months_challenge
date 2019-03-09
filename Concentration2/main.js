@@ -99,7 +99,7 @@
     }
   };
 
-  // check()関数で、2枚目で正誤判定をして同じ番号じゃなかったらカードを閉じる
+  // // check()関数で、2枚目で正誤判定をして同じ番号じゃなかったらカードを閉じる
   function check() {
     // console.log(firstCard.children[0]);
 

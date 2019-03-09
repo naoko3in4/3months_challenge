@@ -10,8 +10,6 @@ let flipCount = 0;
 let firstCard = {};
 let secondCard = {};
 
-const field = document.getElementById("field");
-
 // スタートで開始
 const gameStart = document.getElementById('gameStart');
 
@@ -21,7 +19,7 @@ gameStart.addEventListener('click', () => {
 });
 
 // カード生成
-function createCards() {
+function createCards(num) {
 
   for (let j = 0; j < 4; j++) {
     const mark = marks[j];
@@ -64,7 +62,8 @@ function initDraw() {
     // 最後にDOMに渡すdivのデータの箱を準備
     // ここに cards[i]に入っているデータを渡していく
     // DOM上（これから描画するカード）がcardDOM
-    const cardDom = document.createElement('div');
+    // const cardDom = document.createElement('div');
+    const cardDom = document.getElementById('field');
     // divのidを定義
     cardDom.id = i + 1;
 
@@ -73,18 +72,6 @@ function initDraw() {
     cardDom.classList.add("card");
     field.appendChild(cardDom);
   }
-}
-
-function drawCards(cardIndex) {
-  // console.log('cardIndex',cardIndex);
-
-  const cardId = cardIndex + 1;
-  const cardDom = document.getElementById(cardId);
-  // cards[cardIndex].image のpathの画像を DOMに渡す
-  console.log(cards[cardIndex]);
-  cardDom.style.backgroundImage = `url(${cards[cardIndex].image})`;
-  console.log(cardDom);
-  // resetFlippedCards();
 }
 
 // DOMでクリックした場所の情報を取得してflipcardに渡す
@@ -113,6 +100,15 @@ function flipCard(cardId) {
   checkFlipLimit(cardIndex);
 }
 
+function drawCards(cardIndex) {
+  const cardId = cardIndex + 1;
+  const cardDom = document.getElementById(cardId);
+  // cards[cardIndex].image のpathの画像を DOMに渡す
+  console.log(cards[cardIndex]);
+  cardDom.style.backgroundImage = `url(${cards[cardIndex].image})`;
+  console.log(cardDom);
+}
+
 // １枚めのカードと２枚めのカードを照合
 // 同じ番号の場合、fistCard, secondCardを初期化するのみ。
 // 違う番号の場合、１秒後に裏に戻す。その間、他のカードはクリックできない。
@@ -137,53 +133,39 @@ function checkFlipLimit(cardIndex) {
 
     // 1枚目と2枚目が同じ番号の場合、fistCard, secondCardを初期化するのみ。
     // カードは見えたまま
-    if (firstCard.num === secondCard.num) {
+    if (firstCard.num === !secondCard.num) {
       // resetFlippedCards();
-      console.log("正解！");
+      // console.log("正解！");
+
       
       // return;
-    }
-
-    // 違う番号の場合、１秒後に裏に戻す。
-    // その間、他のカードはクリックできない。
-
-    if (firstCard.num !== secondCard.num) {
-      console.log("wrong numbers");
+    // } else {
       resetFlippedCards(cardIndex);
-      // return;
     }
-    flipCount = 0;
   }
+
 }
 
 function resetFlippedCards(cardIndex) {
-  console.log(firstCard);
-  console.log(cards[firstCard.index]);  
-  console.log(cards[firstCard.index].image);
+  // 配列cardsの中でのfirstCard.index番目のimageをうさぎにす
+  //る
+  console.log(cardIndex);
   cards[firstCard.index].image = ('img/card_back.png');
   console.log(cards);
-
-  // firstCard の cards[インデックス番号]
-  // firstCard.index = cardIndex;
-  // fcardIndex;
-  // firstCardのimageがうさぎになる
-  // firstCard.image = ('img/card_back.png');
-  // console.log(firstCard.image);
-
-  // secondCard の cards[インデックス番号]
-  // secondCard.index = cardIndex;
-  // secondCardのimageがうさぎになる
-  // secondCard.image = ('img/card_back.png');
-
+}
   // firstCard, secondCard空にする
   firstCard = {};
   secondCard = {};
-  // console.log(firstCard);
-  // console.log(secondCard);
-  drawCards(cardIndex);
-  console.log("リセット");
-}
 
+  // draw
+  // Cards();
+  // resetCards(cardIndex);
+  resetCards();
+// }
 
-
-
+  function resetCards(cardIndex){
+    const cardId = cardIndex + 1;
+    const cardDom = document.getElementById(cardId);
+    // cards[cardIndex].image のpathの画像を DOMに渡す
+    cardDom.style.backgroundImage = `url("img/card_back.png")`;
+  }
