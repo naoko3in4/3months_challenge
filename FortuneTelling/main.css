@@ -1,0 +1,17 @@
+body {
+  margin: 0 auto;
+  padding: 0 auto;
+}
+
+#app {
+  margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
+  line-height: 200px;
+  width: 200px;
+  height: 200px;
+  background: gray;
+  border-radius: 10%;
+  font-weight: bold;
+  color: #fff;
+}
