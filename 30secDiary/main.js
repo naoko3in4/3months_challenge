@@ -1,4 +1,5 @@
 let stage;
+let count = 30;
 
 function init() {
   stage = document.getElementById('stage');
@@ -30,41 +31,50 @@ function createStart() {
   stage.appendChild(start);
 
   // timerInnerを作る
-  const timerInner = '<div class="sec count">0.00</div>';
+  // const timerInner = '<div class="sec count">30.00</div>';
+  const timerInner = `<div class="sec count">${count}</div>`;
   const timer = document.createElement('div');
+  timer.id = 'timer';
+  timer.className = 'count';
   timer.innerHTML = timerInner;
   stage.appendChild(timer);
   diaryBox();
 
   // クリックしたらcountSecondsが起動する
   start.addEventListener('click', function() {
-    countSeconds();
+    countdown();
   })
 }  
 
-// countSeconds()・・STARTボタンをクリックしたら３０秒カウント開始
-function countSeconds() {
-
+// countdown()・・STARTボタンをクリックしたら３０秒カウント開始
+function countdown() {
+  document.getElementById('timer').textContent = count.toString();
+  console.log(count--);
+  const id = setTimeout(countdown, 1000);
+  if (count < 0) {
+    clearTimeout(id);
+  }
 }
 
 // diaryBoxを作る
 function diaryBox() {
-  const diary = document.createElement('textarea');
+  let diary = document.createElement('textarea');
+  diary.placeholder = '今日の出来事';
   diary.className = 'diary';
+  diary.id = 'diaryId';
   stage.appendChild(diary);
 
   // lettersInnerを作る
-  const lettersInner = '<div class="letter count">0</div>';
-  const letters = document.createElement('div');
-  letters.innerHTML = lettersInner;
+  const letters = document.createElement('span');
+  letters.className = 'count';
   stage.appendChild(letters);
-
-  letterCounter();
-}
-
-// letterCounter()で文字数を数える
-function letterCounter() {
-
+  // テキストエリア→ diaryに入力したら、
+  // 入力中の文字数→ lettersの数が増える
+  diary.addEventListener('keyup', onkeyup);
+  function onkeyup() {
+    const inputText = diary.value;
+    letters.innerHTML = '<p>'+ inputText.length + ' '+'characters</p>';
+  } 
 }
 
 init();
