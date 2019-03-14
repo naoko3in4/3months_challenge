@@ -6,7 +6,7 @@ body {
   /* font-size 10pxに設定する*/
   font-size: 62.5%;
   /* max-width: 1400px; */
-  min-width: 300px;
+  /* min-width: 300px; s*/
   margin: 0 auto;
 
 }
@@ -19,10 +19,16 @@ a {
 .container {
   width: 100%;
   height: 100%;
+  text-align: center;
 }
-
+/*********************************************************************************************/
 nav {
   background: #ffff;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .navContainer {
@@ -42,6 +48,7 @@ nav {
 .navRight {
   display: flex;
   justify-content: flex-end;
+  font-size: 1rem;
 }
 
 nav li {
@@ -49,50 +56,150 @@ nav li {
   margin-right: 1rem;
 }
 
+nav li a:hover{
+  color: #ed6504;
+}
+
 nav li:last-child {
   margin-right: 0;
 }
 
-.hero {
-  height: 60rem;
-  background: #e6e6e6;
+nav li:hover {
+  color: #ed6504;
 }
 
+nav li:first-child {
+  /* margin-right: 2rem; */
+  padding-right: 2rem;
+}
+
+select {
+  color: #ed6504;
+  padding-right: 1rem;
+  text-decoration: none;
+  font-size: 1rem;
+
+}
+
+select#language {
+  margin: 0;
+  padding: 0;
+}
+.choose {
+	overflow: hidden;
+  width: 90%;
+	text-align: center;
+}
+.choose select {
+	width: 100%;
+	cursor: pointer;
+	text-indent: 0.05rem;
+	text-overflow: ellipsis;
+	/* border: none; */
+	/* outline: none; */
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.choose select::-ms-expand {
+    display: none;
+}
+/* .choose {
+	position: relative;
+	border: 1px solid #bbbbbb;
+	border-radius: 0.1rem;
+	background: #ffffff;
+} */
+.choose::before {
+	position: absolute;
+	top: 1.6rem;
+	right: 20.5rem;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 0.3rem solid transparent;
+	border-right: 0.3rem solid transparent;
+	border-top: 0.3rem solid #666666;
+}
+/*********************************************************************************************/
+.hero {
+  /* height: 20rem; */
+  background: #e6e6e6;
+  padding: 20rem 0;
+  color: #ffff;
+  font-weight: normal;
+}
+.hero h1 {
+  font-size: 2rem;
+  font-weight: normal;
+  margin-bottom: -0.7rem;
+}
+
+.hero h2 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.hero > section > button {
+  font-size: 1rem;
+  background: #fb7210;
+  color: #ffff;
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 0.2rem;
+}
+
+.hero > section > button:hover {
+  background: #d45a04;
+  transition: 0.5s;
+}
+
+/*********************************************************************************************/
 .reason {
   height: 107rem;
   background: #287fb8;
 }
 
+/*********************************************************************************************/
 .review {
   height: 70rem;
   background: #e6e6e6;
 }
 
+/*********************************************************************************************/
 .about {
   height: 110rem;
   background: #ed6504;
 }
 
+/*********************************************************************************************/
 .info {
   height: 60rem;
   background: #e6e6e6;
 }
 
+/*********************************************************************************************/
 .security {
   height: 73rem;
   background: #287fb8;
 }
 
+/*********************************************************************************************/
 .service {
   height: 60rem;
   background: #e6e6e6;
 }
 
+/*********************************************************************************************/
 .destination {
   height: 103rem;
   background: #e6e6e6;
 }
 
+/*********************************************************************************************/
 footer {
   height: 26rem;
   background: #ffff;
