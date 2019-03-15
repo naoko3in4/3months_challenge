@@ -5,8 +5,8 @@ body {
 
   /* font-size 10pxに設定する*/
   font-size: 62.5%;
-  /* max-width: 1400px; */
-  /* min-width: 300px; s*/
+  max-width: 1440px;
+  min-width: 300px; 
   margin: 0 auto;
 
 }
@@ -20,7 +20,10 @@ a {
   width: 100%;
   height: 100%;
   text-align: center;
+  font-size: 1rem;
 }
+
+
 /*********************************************************************************************/
 nav {
   background: #ffff;
@@ -32,12 +35,12 @@ nav {
 }
 
 .navContainer {
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   display: flex;
   justify-content: space-between;
 }
 
-.home {
+.navContainer__home {
   width: 2rem;
   height: 2rem;
   background: #ed6504;
@@ -45,7 +48,7 @@ nav {
   padding-right:0;
 }
 
-.navRight {
+.navContainer__navRight {
   display: flex;
   justify-content: flex-end;
   font-size: 1rem;
@@ -56,20 +59,15 @@ nav li {
   margin-right: 1rem;
 }
 
-nav li a:hover{
-  color: #ed6504;
-}
-
 nav li:last-child {
   margin-right: 0;
 }
 
-nav li:hover {
+.navContainer--orange:hover{
   color: #ed6504;
 }
 
 nav li:first-child {
-  /* margin-right: 2rem; */
   padding-right: 2rem;
 }
 
@@ -85,37 +83,30 @@ select#language {
   margin: 0;
   padding: 0;
 }
-.choose {
+.navContainer__choose {
 	overflow: hidden;
   width: 90%;
 	text-align: center;
 }
-.choose select {
+.navContainer__choose select {
 	width: 100%;
 	cursor: pointer;
 	text-indent: 0.05rem;
 	text-overflow: ellipsis;
-	/* border: none; */
-	/* outline: none; */
 	background: transparent;
 	background-image: none;
 	box-shadow: none;
 	-webkit-appearance: none;
 	appearance: none;
 }
-.choose select::-ms-expand {
+.navContainer__choose select::-ms-expand {
     display: none;
 }
-/* .choose {
-	position: relative;
-	border: 1px solid #bbbbbb;
-	border-radius: 0.1rem;
-	background: #ffffff;
-} */
-.choose::before {
+
+.navContainer__choose::before {
 	position: absolute;
-	top: 1.6rem;
-	right: 20.5rem;
+	top: 2.1rem;
+	right: 22rem;
 	width: 0;
 	height: 0;
 	padding: 0;
@@ -124,32 +115,59 @@ select#language {
 	border-right: 0.3rem solid transparent;
 	border-top: 0.3rem solid #666666;
 }
+
+.navContainer__join,
+.navContainer__logIn {
+  padding: 0.5rem;
+  border-radius: 0.1rem;
+}
+
+.navContainer__join {
+  background: #3e99d5;
+  color: #ffff;
+}
+
+.navContainer__join:hover {
+  background: #2371a3;
+  transition: 0.8s;
+}
+
+.navContainer__logIn {
+  color: #2371a3;
+  border: 1px solid  #2371a3;
+}
+
+.navContainer__logIn:hover {
+  background: #e6e6e6;
+  transition: 0.8s;
+
+}
+
+
 /*********************************************************************************************/
 .hero {
-  /* height: 20rem; */
   background: #e6e6e6;
   padding: 20rem 0;
   color: #ffff;
   font-weight: normal;
 }
 .hero h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: normal;
   margin-bottom: -0.7rem;
 }
 
 .hero h2 {
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: normal;
 }
 
 .hero > section > button {
-  font-size: 1rem;
+  font-size: 1.6rem;
   background: #fb7210;
   color: #ffff;
-  width: 10rem;
-  height: 2.5rem;
-  border-radius: 0.2rem;
+  padding: 0.8rem 3rem;
+  border-radius: 0.3rem;
 }
 
 .hero > section > button:hover {
@@ -159,9 +177,69 @@ select#language {
 
 /*********************************************************************************************/
 .reason {
-  height: 107rem;
+  /* height: 70rem; */
+  height: 100%;
   background: #287fb8;
 }
+
+.reason h2 {
+  margin: 0 auto;
+  padding: 3rem 0 0 0;
+  font-size: 2rem;
+  font-weight: normal;
+  color: #ffff;
+}
+
+.reason__line {
+  width: 3rem;
+  height: 1.5rem;
+  border-bottom: solid 0.1rem #ffff;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.reason article {
+  padding: 2rem 4rem 2rem 4rem;
+  display: flex;
+  justify-content: center;
+
+}
+.reason__why {
+  width: 40rem;
+  /* height: 50rem; */
+  background: #3e99d5;
+  margin-right: 1rem;
+} 
+
+.reason__why__container {
+  padding: 3rem;
+}
+
+
+.reason__why:last-child {
+  margin-right: 0;
+}
+
+.reason__why__pic {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.reason__why__pic--first {
+  background-image: url('https://placehold.jp/340x420.png');
+}
+
+/* .reason__why__container {
+  padding: 3rem;
+} */
+
+.reason p {
+  color: #ffff;
+  text-align: center;
+  font-size: 1.6rem;
+}
+
 
 /*********************************************************************************************/
 .review {
