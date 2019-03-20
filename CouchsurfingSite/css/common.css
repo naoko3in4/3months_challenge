@@ -276,7 +276,7 @@ select#language {
 /*********************************************************************************************/
 .guide__container {
   background: #e6e6e6;
-  padding: 10rem 6.5rem;
+  padding: 10rem 6.5rem 15rem 6.5rem;
   position: relative;
 }
 
@@ -297,7 +297,6 @@ select#language {
   padding: 10rem 4rem;
 }
 .guide__heading {
-  max-width: 63rem;
   width: 100%;
  }
 
@@ -322,10 +321,11 @@ select#language {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  padding-bottom: 1rem;
 }
 
 .guide__review__user {
-  padding:3rem;
+  padding: 2rem 3rem 0 3rem;
 }
 
 .guide__review__user-image {

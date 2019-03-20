@@ -23,3 +23,56 @@
   }
   
 }
+
+@media screen and (max-width:750px){
+
+  .guide {
+    padding: 13rem 0 25rem 0rem;
+  }
+
+  .guide__container {
+    padding: 3rem 3rem 35rem 3rem;
+  }
+
+  .guide__heading__container {
+    width: 100%;
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .guide__heading {
+    margin-bottom: 1rem;
+   } 
+
+  .guide__review__container {
+    top: 18rem;
+    left: 25%;
+    padding-top: 0;
+  }
+  
+  
+}
+
+@media screen and (max-width:600px){
+
+  .guide {
+    padding-bottom: 10rem;
+  }
+
+  .guide__container {
+    padding: 3rem;
+  }
+
+  .guide__review__container {
+    position: static;
+    padding-top: 1rem;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:490px){
+  .nav-container--mobile {
+    display: none;
+  }
+}
+
