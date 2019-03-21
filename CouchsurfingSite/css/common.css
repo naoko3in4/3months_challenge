@@ -12,7 +12,7 @@ body {
   margin: 0 auto;
 }
 
-p, a, .container, nav, .nav-container, select, span{
+p, a, .container, nav, .nav-container, select, span {
   font-size: 1.6rem;
 }
 
@@ -138,7 +138,8 @@ select#language {
 	background-image: none;
 	box-shadow: none;
 	-webkit-appearance: none;
-	appearance: none;
+  appearance: none;
+  border-radius: 3px;
 }
 .nav-container__choose select::-ms-expand {
     display: none;
@@ -160,7 +161,7 @@ select#language {
 .nav-container__join,
 .nav-container__logIn {
   padding: 1rem;
-  border-radius: 0.1rem;
+  border-radius: 3px;
 }
 
 .nav-container__join {
@@ -201,11 +202,11 @@ select#language {
   font-weight: normal;
 }
 
-.hero > section > button {
+.hero__button {
   background: #fb7210;
 }
 
-.hero > section > button:hover {
+.hero__button:hover {
   background: #d45a04;
 }
 
@@ -231,12 +232,15 @@ select#language {
   margin-right: 0;
 }
 
-.reason__content {
-  background: #3e99d5;
-  padding: 3rem;
+.contents__box {
   margin-right: 1rem;
   max-width: 36rem;
   width: 100%;
+}
+
+.reason__content {
+  background: #3e99d5;
+  padding: 3rem;
 }
 
 .reason__content:last-child {
@@ -256,6 +260,10 @@ select#language {
   margin: 0 auto;
 }
 
+.reason__content__description {
+  font-size: 1.2rem;
+  color: #ffff;
+}
 .reason__content__description__text {
   max-width: 34rem;
   color: #ffff;
@@ -289,13 +297,22 @@ select#language {
   position: relative;
 }
 
-.guide__heading__container {
+.heading__container {
   position: absolute;
   top: 0;
-  left: 0;
   width: 25%;
-  padding: 10rem 4rem;
 }
+
+.guide__heading__container {
+  left: 0;
+  padding: 10rem 4rem; 
+}
+
+.search__heading__container {
+  right: 0;
+  padding: 10rem 2rem; 
+}
+
 .guide__heading {
   width: 100%;
  }
@@ -304,13 +321,20 @@ select#language {
   margin: 0 0 3rem 0;
  }
 
-.guide__review__container {
+ .review__container {
   padding-top: 7rem;
   background: #ffff;
   position: absolute;
   width: 50%;
   top: 6rem;
+ }
+
+.guide__review__container {
   right: 12rem;
+}
+
+.search__review__container {
+  left: 12rem;
 }
 
 .guide__review__top {
@@ -367,8 +391,13 @@ select#language {
 }
 /*********************************************************************************************/
 .about {
-  height: 110rem;
   background: #ed6504;
+}
+
+.about__content {
+  padding: 2rem;
+  background: #ff855c;
+  color: #ffff;
 }
 
 /*********************************************************************************************/
