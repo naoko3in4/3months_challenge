@@ -2,8 +2,8 @@
 
 @media screen and (max-width:800px){
 
-  .reason {
-    margin-right: 1rem;
+  .box-show {
+    margin-right: 0rem;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,14 @@
     max-width: 60rem;
     width: 100%;
   }
-  
+
+  .info {
+    padding: 2rem 0 0 0;
+  }
+
+  .security__content:last-child {
+    margin-bottom:0;
+  }
 }
 
 @media screen and (max-width:750px){
@@ -76,5 +83,9 @@
   .nav-container--mobile {
     display: none;
   }
-}
 
+  .category__title {
+    font-weight: lighter;
+    padding: 0 2.5rem;
+  }
+}
