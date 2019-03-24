@@ -13,8 +13,8 @@
   <div class="container">
     <nav>
       <section class="nav-container">
-        <div class="nav-container__home"><a href="#"></div></span>
-        <div class="nav-container__navRight">
+        <div class="nav-container__home nav-container__nav-left"><a href="#"></div></span>
+        <div class="nav-container__nav-right">
           <li class="nav-container__choose nav-container--mobile">
             <select name="language" id="language">
               <option value="English" selected>English</option>
@@ -29,6 +29,7 @@
         </div>
       </section>
     </nav>
+
     <div class="hero">
       <section>
         <h1>Stay with Locals and Meet Travelers</h1>
@@ -312,7 +313,47 @@
           <div class="destination__place place-more">More</div>
       </div>
     </section>
-    <footer>FOOTER</footer>
+
+    <footer>
+      <ul>
+        <section class="footer__nav-container nav-container">
+          <div class="footer__nav-language-container">
+            <div class="footer__left nav-container__nav-left">
+              <li><a href="#" class="nav-container--orange footer__left-tag">ABOUT</a></li>
+              <li><a href="#" class="nav-container--orange footer__left-tag">SAFETY</a></li>
+              <li><a href="#" class="nav-container--orange footer__left-tag">SUPPORT</a></li>
+              <li><a href="#" class="nav-container--orange footer__left-tag">BLOG</a></li>
+              <li><a href="#" class="nav-container--orange footer__left-tag">SHOP</a></li> 
+            </div>
+            <div class="nav-container__nav-right">
+              <li class="footer__language">
+                <select name="language" id="language">
+                  <option value="English" selected>English</option>
+                  <option value="Chinese">Chinese</option>
+                  <option value="Japanese">Japanese</option>
+                </select>
+                <i class="fas fa-caret-down footer__language__icon"></i>
+              </li>
+            </div>
+          </div>
+        </section>
+          <div class="footer__connection__container">
+            <div class="footer__connection__sns">
+              <p>CONNECTED WITH US</p>
+              <a href="#"><i class="fab fa-facebook-f footer__connection__icon fa-2x facebook__icon"></i></a>
+              <a href="#"><i class="fab fa-twitter footer__connection__icon fa-2x twitter__icon"></i></a>
+              <a href="#"><i class="fab fa-instagram footer__connection__icon fa-2x instagram__icon"></i></a>
+            </div>
+            <div class="footer__connection__apps">
+              <p>MOBILE APPS</p>
+              <a href="#"><i class="fab fa-apple footer__connection__icon fa-2x apple__icon"></i></a>
+              <a href="#"><i class="fab fa-android footer__connection__icon fa-2x android__icon"></i></a>
+            </div>
+          </div>
+        <!-- </section> -->
+      </ul>
+
+    </footer>
   </div>
 <script src="main.js"></script>
 </body>
