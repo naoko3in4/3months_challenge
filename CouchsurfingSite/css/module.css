@@ -125,11 +125,10 @@
     padding-top: 1rem;
     width: 100%;
   }
-
 }
 
 @media screen and (max-width:490px){
-  .nav-container--mobile {
+  .header-container--mobile {
     display: none;
   }
 
@@ -140,6 +139,9 @@
 }
 
 @media screen and (max-width:450px){
+  .service__button {
+    margin-bottom: 1rem;
+  }
   .destination__place__container {
     grid-template: repeat(20, 8rem)/ repeat(1, 1fr);
     height: 100%;

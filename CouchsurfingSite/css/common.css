@@ -10,9 +10,13 @@ body {
   /* font-size 10pxに設定する*/
   font-size: 62.5%;
   margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 1rem;
 }
 
-p, a, .container, nav, .nav-container, select, span,
+p, a, .container, header, .header-container, select, span,
 .categories, table, .destination-search {
   font-size: 1.6rem;
 }
@@ -38,26 +42,22 @@ li:last-child {
 
 ul {
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
 }
 
 button {
   max-width: 18rem;
   width: 100%;
   font-size: 2rem;
-  color: #ffff;
+  color: #fff;
   padding: 0.8rem 3rem;
   border-radius: 0.4rem;
 }
 
 button:hover {
   transition: 0.5s;
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  font-size: 1rem;
 }
 
 .contents__box {
@@ -67,7 +67,7 @@ button:hover {
 }
 
 .content__more {
-  color: #ffff;
+  color: #fff;
   text-decoration: underline;
   display: block;
   font-size: 1.4rem;
@@ -76,7 +76,6 @@ button:hover {
 
 .heading__title,
 .guide__heading {
-  /* margin-top:0; */
   padding: 0.5rem;
   margin-bottom:0;
 
@@ -153,8 +152,8 @@ button:hover {
 }
 
 /*********************************************************************************************/
-nav {
-  background: #ffff;
+header {
+  background: #fff;
   position: fixed;
   right: 0;
   left: 0;
@@ -162,33 +161,30 @@ nav {
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.nav-container {
+.header-container {
   padding: 2rem 1rem;
   display: flex;
   justify-content: space-between;
 }
 
-.nav-container__home {
-  width: 3.5rem;
-  height: 3.5rem;
+.header-container__home {
+  width: 4rem;
+  height: 4rem;
   background: #ed6504;
   border-radius: 50%;
   padding-right:0;
 }
 
-.nav-container__nav-right {
+.header-container__header-right {
   display: flex;
   justify-content: flex-end;
   font-size: 1rem;
+  padding: 1rem 0;
 }
 
-.nav-container--orange:hover,
+.header-container--orange:hover,
 .footer__left:hover{
   color: #ed6504;
-}
-
-nav li:first-child {
-  padding-right: 2rem;
 }
 
 select {
@@ -198,16 +194,16 @@ select {
 }
 
 select#language {
+  height: 2.4rem;
   margin: 0;
   padding: 0 2rem;
 }
 
-.nav-container__choose {
+.header-container__choose {
 	overflow: hidden;
-  width: 90%;
 	text-align: center;
 }
-/* .nav-container__choose select  */
+
 select#language {
 	width: 100%;
 	cursor: pointer;
@@ -220,13 +216,13 @@ select#language {
   appearance: none;
   border-radius: 3px;
 }
-.nav-container__choose select::-ms-expand {
+.header-container__choose select::-ms-expand {
     display: none;
 }
 
-.nav-container__choose::before {
+.header-container__choose::before {
 	position: absolute;
-	top: 3rem;
+	top: 4rem;
 	right: 33rem;
 	width: 0;
 	height: 0;
@@ -237,30 +233,30 @@ select#language {
 	border-top: 0.3rem solid #666666;
 }
 
-.nav-container__join,
-.nav-container__logIn {
+.header-container__join,
+.header-container__logIn {
   padding: 1rem;
   border-radius: 3px;
 }
 
-.nav-container__join,
+.header-container__join,
 .destination__icon{
   background: #3e99d5;
   color: #ffff;
 }
 
-.nav-container__join:hover,
+.header-container__join:hover,
 .destination__icon:hover {
   background: #2371a3;
   transition: 0.8s;
 }
 
-.nav-container__logIn {
+.header-container__logIn {
   color: #2371a3;
   border: 1px solid  #2371a3;
 }
 
-.nav-container__logIn:hover {
+.header-container__logIn:hover {
   background: #e6e6e6;
   transition: 0.8s;
 }
@@ -268,8 +264,8 @@ select#language {
 /*********************************************************************************************/
 .hero {
   background: #e6e6e6;
-  padding: 20rem 0;
-  color: #ffff;
+  padding: 20rem 1rem;
+  color: #fff;
   font-weight: normal;
 }
 .hero h1 {
@@ -315,7 +311,6 @@ select#language {
 
 .guide {
   height: 100%;
-  /* width: 100%; */
   background: #929dad;
   padding: 18rem 0 20.5rem 10rem;
   text-align: left;
@@ -424,6 +419,7 @@ select#language {
   background: #ff855c;
   color: #ffff;
   box-shadow: 3px 3px 4px #e63d00;
+  padding: 1rem;
 }
 
 .about__content:last-child {
@@ -431,9 +427,11 @@ select#language {
 }
 
 .category__container {
-  color: #ffff;
+  color: #fff;
   margin: 0 auto;
+  margin-bottom: 2rem;
   padding: 2rem 0;
+  border-collapse: collapse;
 }
 
 .category__title {
@@ -458,8 +456,8 @@ select#language {
 }
 
 .category__fee {
-  border-right: 1px solid #ffff;
-  border-left: 1px solid #ffff;
+  border-right: 1px solid #fff;
+  border-left: 1px solid #fff;
 }
 
 .category__fee__last {
@@ -631,11 +629,19 @@ footer {
   padding-bottom: 1rem;
 }
 
-.footer__nav-container {
-  padding: 2rem;
+footer ul {
+  padding: 1rem;
 }
 
-.footer__nav-language-container {
+footer li {
+  margin-bottom: 2rem;
+}
+
+.footer__header-container {
+  padding: 1rem;
+}
+
+.footer__header-language-container {
   display: flex;
   justify-content: space-around;
 }
@@ -669,7 +675,6 @@ footer select#language {
 .footer__connection__container {
   display: flex;
   flex-wrap: wrap;
-  padding: 0 2rem 1rem 1rem;
   color: #666666;
 }
 
