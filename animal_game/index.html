@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="main.css">
+  
+  <title>AnimalGame</title>
+</head>
+<body>
+  <div class="stage">
+    <button id="start" class="game__button">スタート</button>
+    <p id="seconds">0秒</p>
+    <p class="beginning-sentence">
+      <p>ニンゲン > ネコ > ネズミ</p>
+      <p>ネズミ(溝ネズミ) > ニンゲン </p>
+        あなたは
+    </p>
+
+    <div id="my-hand__container">
+      <div class="my-hand">
+        <!-- ネコ -->
+        <img class="my-hand__images my-hand__images--default" src="img/cat-resized.jpg" id="0" alt="cat">
+      </div>
+      <div class="my-hand">
+        <!-- ネズミ -->
+        <img class="my-hand__images my-hand__images--default" src="img/mouse.jpg" id="1" alt="mouse">
+      </div>
+      <div class="my-hand">
+        <!-- ニンゲン -->
+        <img class="my-hand__images my-hand__images--default" src="img/human.jpg" id="2" alt="human">
+      </div>
+    </div>
+
+    <p>VS</p>
+    <div class='enemy-hand__container'>
+      <img id="enemy-hand" src="img/hatena.png" alt="対戦相手">
+    </div>
+    <div id="result__container">
+      <p id="result">勝負結果</p>
+    </div>
+  </div>
+
+  </div>
+<script src="main.js"></script>
+</body>
+</html>
+
