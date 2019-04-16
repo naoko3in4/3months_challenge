@@ -1,14 +1,14 @@
 'use strict';
 {
   const images = [
-    'img/sea.jpg',
-    'img/mountain.jpg',
-    'img/amusement-park.jpg',
-    'img/space.jpg',
-    'img/house.jpg',
-    'img/sky.jpg',
-    'img/church.jpg',
-    'img/river.jpg'
+    '../img/sea.jpg',
+    '../img/mountain.jpg',
+    '../img/amusement-park.jpg',
+    '../img/space.jpg',
+    '../img/house.jpg',
+    '../img/sky.jpg',
+    '../img/church.jpg',
+    '../img/river.jpg'
   ]
 
   const treasure = Math.floor(Math.random() * images.length);
@@ -36,7 +36,6 @@
   
   stop.addEventListener('click', () => {
     result.style.display = 'block';
-    console.log(result);
     console.log(`現在地 ${currentPlace}`);
     stop.style.display = 'none';
     start.style.display = 'block';
@@ -59,6 +58,5 @@
   const addCurrentPlace = () => {
     document.querySelectorAll('.place')[currentPlace].classList.add('place--active');
   }
-
   
 }

@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 html {
   font-size: 62.5%;
   margin: 0 auto;
@@ -13,14 +15,15 @@ ul{
   list-style: none;
 }
 
-.game-button {
+.game-button  {
   margin: 0 auto;
-
   border: 2px solid gray;
   background: #fff;
   border-radius: 3px;
-  margin-bottom: 1rem;
 }
+
+
+
 .button__hidden {
   display: none;
 }
@@ -63,14 +66,14 @@ ul{
 }
 
 .place__0 {
-  background: url('img/sea.jpg');
+  background: url('../img/sea.jpg');
   grid-area: 1/1/2/3;
   background-size: cover;
 
 }
 
 .place__1 {
-  background: url('img/mountain.jpg');
+  background: url('../img/mountain.jpg');
   grid-area: 2/1/4/2;
   background-size: cover;
   line-height: 40rem;
@@ -78,38 +81,38 @@ ul{
 }
 
 .place__2 {
-  background: url('img/amusement-park.jpg');
+  background: url('../img/amusement-park.jpg');
   grid-area: 2/2/3/3;
   background-size: cover;
 }
 
 .place__3 {
-  background: url('img/space.jpg');
+  background: url('../img/space.jpg');
   grid-area: 3/2/4/3;
   background-size: cover;
 }
 
 .place__4 {
-  background: url('img/house.jpg');
+  background: url('../img/house.jpg');
   grid-area: 1/3/2/4;
   background-size: cover;
 }
 
 .place__5 {
-  background: url('img/sky.jpg');
+  background: url('../img/sky.jpg');
   grid-area: 2/3/3/4;
   background-size: cover;
 }
 
 .place__6 {
-  background: url('img/church.jpg');
+  background: url('../img/church.jpg');
   grid-area: 1/4/3/5;
   background-size: cover;
   line-height: 40rem;
 }
 
 .place__7 {
-  background: url('img/river.jpg');
+  background: url('../img/river.jpg');
   grid-area: 3/3/4/5;
   background-size: cover;
 }
